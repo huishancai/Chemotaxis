@@ -6,7 +6,7 @@ void setup()
 {     
   //initialize bacteria variables here   
   size(500,500);
-  frameRate(10);
+  frameRate(8);
   
   int i = 0;
   while(i < boba.length) {
@@ -66,8 +66,14 @@ class Bacteria
   }
   void walk()
   {
-    myX = myX + (int)(Math.random()*40)-20;
-    myY = myY + (int)(Math.random()*15)+5;
+    if (myY < 365) {
+      if(myX > 185 && myX < 315) {
+        myX = myX + (int)(Math.random()*40)-20;
+        myY = myY + (int)(Math.random()*15)+5;
+      } else {
+        myY = myY + (int)(Math.random()*15)+5;
+      }
+    }
   }
   void show()
   {
@@ -75,3 +81,12 @@ class Bacteria
     ellipse(myX, myY, 35, 35);
   }
 }  
+void mousePressed()
+{
+  int i = 0;
+  while(i < boba.length) {
+    boba[i] = new Bacteria();
+    i++;
+  }
+  redraw();
+}
